@@ -1,18 +1,21 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var d3 = require("d3");
-var width = 600, height = 400;
-var colorScale = ['orange', 'lightblue', '#B19CD9'];
-var xCenter = [100, 300, 500];
-var numNodes = 100;
-var nodes = d3.range(numNodes).map(function (d, i) {
-    return {
-        radius: Math.random() * 25,
-        category: i % 3
-    };
+import * as d3 from "d3";
+const width = 600, height = 400;
+const colorScale = ['orange', 'lightblue', 'pink'];
+const xCenter = [100, 300, 500];
+const numNodes = 100;
+class VoterBubble {
+    constructor(index, category, radius) {
+        this.index = index;
+        this.category = category;
+        this.radius = radius;
+    }
+}
+const nodes = d3.range(numNodes).map(function (d, i) {
+    return new VoterBubble(i, i % 3, 5);
 });
 var simulation = d3.forceSimulation(nodes)
     .force('charge', d3.forceManyBody().strength(5))
+    .force('y', d3.forceY().y(200))
     .force('x', d3.forceX().x(function (d) {
     return xCenter[d.category];
 }))
@@ -23,7 +26,7 @@ var simulation = d3.forceSimulation(nodes)
 function ticked() {
     var u = d3.select('#viz')
         .selectAll('circle')
-        .data(nodes);
+        .data(simulation.nodes());
     u.enter()
         .append('circle')
         .attr('r', function (d) {
@@ -31,8 +34,8 @@ function ticked() {
     })
         .style('fill', function (d) {
         return colorScale[d.category];
-    })
-        .merge(u)
+    });
+    u.merge(u)
         .attr('cx', function (d) {
         return d.x;
     })
@@ -41,3 +44,4 @@ function ticked() {
     });
     u.exit().remove();
 }
+//# sourceMappingURL=app.js.map

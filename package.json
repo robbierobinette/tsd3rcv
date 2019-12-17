@@ -1,21 +1,28 @@
 {
-  "name": "untitled",
+  "name": "tsd3rcv",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "directories": {
-    "doc": "doc"
-  },
-  "dependencies": {
-    "d3": "^5.14.2"
-  },
-  "devDependencies": {
-    "@types/d3": "^5.7.2"
-  },
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx webpack"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "d3": "^5.14.2",
+    "d3-geo": "^1.11.9",
+    "topojson": "^3.0.2",
+    "topojson-client": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/d3": "^5.7.2",
+    "@types/topojson": "^3.2.2",
+    "@types/topojson-client": "^3.0.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.3",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  }
 }
