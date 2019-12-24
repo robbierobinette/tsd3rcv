@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c403f3a-40e6-43c6-9bfa-69ef0220bb84" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/DistrictMap.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/usmap2.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/makemap.sh" beforeDir="false" afterPath="$PROJECT_DIR$/maps/makemap.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maps/us2018.topo.json" beforeDir="false" afterPath="$PROJECT_DIR$/maps/us2018.topo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/map.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/map.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/usmap.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/plugins.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +127,7 @@
       <workItem from="1575400853418" duration="4692000" />
       <workItem from="1576274639406" duration="10205000" />
       <workItem from="1576542293637" duration="12419000" />
-      <workItem from="1577027128234" duration="4970000" />
+      <workItem from="1577027128234" duration="5887000" />
     </task>
     <servers />
   </component>
