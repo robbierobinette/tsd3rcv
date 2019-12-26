@@ -23,6 +23,10 @@ module.exports = {
     usmap: './src/usmap.ts',
     usmap2: './src/usmap2.ts',
   },
+  devtool: 'inline-source-map',
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ],
+  },
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),

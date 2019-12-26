@@ -4,14 +4,26 @@ import {FeatureCollection} from 'GeoJSON'
 
 
 export class DistrictMap {
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+  // too many uses of 'any'.  In scala it would not be required to forward declare the type, that would
+  // be inferred by the compiler at instantiation time.
+  //
+  // Also, it takes 3+ lines of code to create a member variable, it would only require 1 in scala.
   svg: any;
+  g: any;
   projection = d3.geoAlbersUsa();
   path = d3.geoPath().projection(this.projection);
+  mouseEnterCallback: Function;
+  mouseExitCallback: Function;
+  mouseClickCallback: Function;
 
-  constructor(svgDivId: string) {
+  constructor(svgDivId: string, onMouseEnter: Function, onMouseExit: Function, onClick: Function) {
     this.svg = d3.select(svgDivId);
+    this.mouseEnterCallback = onMouseEnter;
+    this.mouseExitCallback = onMouseExit;
+    this.mouseClickCallback = onClick;
     console.log("DistrictMap");
-    var url = "us2018.topo.json";
+    const url = "us2018.topo.json";
     const mapPromise = d3.json(url);
     mapPromise.then((data: any) => this.constructMap(data))
   }
@@ -20,30 +32,78 @@ export class DistrictMap {
   constructMap(data: any) {
     console.log("simplified map2");
 
-    const stateFeatureCollection = topojson.feature(data, data.objects.states) as unknown as FeatureCollection<GeoJSON.GeometryObject, GeoJSON.GeoJsonProperties>
+    // TODO:  eliminate casting gymnastics
+    const stateFeatureCollection = topojson.feature(data, data.objects.states) as unknown as FeatureCollection<GeoJSON.GeometryObject, GeoJSON.GeoJsonProperties>;
+    const districtFeatureCollection = topojson.feature(data, data.objects.districts) as unknown as FeatureCollection<GeoJSON.GeometryObject, GeoJSON.GeoJsonProperties>;
 
+    const obj = this;
 
-    const districtFeatureCollection = topojson.feature(data, data.objects.districts) as unknown as FeatureCollection<GeoJSON.GeometryObject, GeoJSON.GeoJsonProperties>
+    this.svg.call(d3.zoom()
+      .scaleExtent([1, 16])
+      .on("zoom", () => obj.zoomed()));
 
-    this.svg.append("path")
+    this.g = this.svg.append("g");
+    console.log("constructMap.this:  ", this);
+    console.log("this.g:  ", this.g);
+
+    this.g.append("path")
       .attr("d", this.path(stateFeatureCollection))
-      .attr("fill", "lightgray");
+      .attr("fill", "lightgray")
+      .attr("stroke", "#fff");
 
-    this.svg.append("g")
-      .attr("class", "districts")
-      .attr("clip-path", "url(#clip-land)")
-      .selectAll("path")
-      .data(districtFeatureCollection.features)
-      .enter()
-      .append("path")
-      .attr("d", this.path)
-      .attr("fill", "none")
-      .attr("stroke", "#00f")
-      .attr("stroke-width", "0.5px")
-      .append("title")
-      .text(function(d: any) { return d.id; })
+    var a = 2;
+    var b = 1;
 
+    if (a == b) {
+
+      this.g.selectAll("path")
+        .data(districtFeatureCollection.features)
+        .enter()
+        .append("path")
+        .attr("class", "districts")
+        .attr("d", this.path)
+        .attr("fill", "none")
+        .attr("stroke", "#00f")
+        .attr("stroke-width", "0.5px")
+       .on("mouseover", (d: any) => {
+          console.log("mouseover");
+          obj.mouseEnterCallback(d);
+        })
+        .on("mouseout", (d: any) => {
+          console.log("mouseout");
+          obj.mouseExitCallback(d);
+        })
+        .on("mouseclick", (d: any) => {
+          console.log("click");
+          obj.mouseClickCallback(d);
+        })
+
+    } else {
+      this.g.selectAll("path")
+        .data(districtFeatureCollection.features)
+        .enter()
+        .append("path")
+        .attr("d", this.path)
+        .style("fill", "#eee")
+        .style("stroke", "#888")
+        .style("stroke-width", "0.1px")
+        .on("mouseover", mouse_enter)
+        .on("mouseout", mouse_exit)
+    }
+
+    function mouse_enter(d: any) {
+      console.log("Mouse enter: ", d);
+    }
+
+    function mouse_exit(d: any) {
+      console.log("Mouse exit: ", d);
+    }
   }
 
+  zoomed() {
+    console.log("zoomed: this:  ", this);
+    console.log("this.g:  ", this.g);
+    this.g.attr("transform", d3.event.transform);
+  }
 }
 
