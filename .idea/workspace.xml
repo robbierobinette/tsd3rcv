@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4c403f3a-40e6-43c6-9bfa-69ef0220bb84" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DistrictMap.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/DistrictMap.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/usmap2.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/usmap2.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/map.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/map2.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +135,7 @@
       <workItem from="1576542293637" duration="12419000" />
       <workItem from="1577027128234" duration="6738000" />
       <workItem from="1577236816568" duration="5138000" />
-      <workItem from="1577322236745" duration="223000" />
+      <workItem from="1577322236745" duration="370000" />
     </task>
     <servers />
   </component>
