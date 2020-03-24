@@ -31,7 +31,7 @@ export class DistrictMap {
 
 
   constructMap(data: any) {
-    const obj = this
+    const obj = this;
     console.log("simplified map2");
 
     // TODO:  eliminate casting gymnastics
@@ -59,13 +59,13 @@ export class DistrictMap {
       .attr("fill", "#eee")
       .attr("stroke", "#00f")
       .attr("stroke-width", "0.1px")
-      .on("mouseover", function (this: any, d: any) {
-        console.log("mouseover");
+      .on("mouseover", function (d: any, i: number) {
+        console.log("mouseover", d, i);
         d3.select(this).style("fill", "red");
         obj.mouseEnterCallback(d);
       })
-      .on("mouseout", function (this: any, d: any) {
-        console.log("mouseout");
+      .on("mouseout", function (d: any, i: number) {
+        console.log("mouseout", d, i);
         d3.select(this).style("fill", "#eee");
         obj.mouseExitCallback(d);
       })
